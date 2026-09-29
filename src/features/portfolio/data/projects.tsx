@@ -3,24 +3,41 @@ import type { Project } from "../types/projects"
 export const PROJECTS: Project[] = [
   {
     id: "stylekit",
-    title: "stylekit",
-    link: "https://github.com/AnxForever/stylekit",
-    skills: ["TypeScript", "Design Tokens", "MCP", "Agent Skill", "CLI"],
+    title: "StyleKit",
+    link: "https://stylekit.top",
+    skills: ["TypeScript", "Next.js", "React", "MCP", "Node.js"],
     isExpanded: true,
-    description: `面向 AI 生成网页的开源视觉风格库：148 套精选风格，每套带设计令牌与提示词。
+    description: `面向 AI 编码工具的开源设计风格库：把设计风格抽象成它们能直接消费的结构化约束。
 
-- 配套 [stylekit-mcp](https://github.com/AnxForever/stylekit-mcp) 提供 MCP 服务端，把风格库接进对话式设计流程。
-- 配套 [stylekit-skill](https://github.com/AnxForever/stylekit-skill) 作为 Agent Skill，支持 MCP、Agent Skill 与 npm CLI 三种用法。`,
+- 148 种风格与 60 个动画整理为设计 tokens、组件配方与可机读约束；已发布 MCP / CLI / Core 三个 npm 包。
+- MCP Server 提供风格查询、设计 tokens 和 \`stylekit_lint_code\` 等 6 个只读工具。\`stylekit_lint_code\` 用确定性规则检查生成代码的风格违规项并返回修复建议 —— 规则通过不等于视觉或无障碍质量合格。
+- 仓库离线评测记录 60 条中英查询：BM25 / 向量 / RRF 方案 Recall@1 为 96.7%，基线 35.0%。该实验检索尚未接入网站或 MCP 的风格搜索。
+
+项目由我独立推进，开发中大量借助 AI 编码工具生成和修改代码。`,
   },
   {
-    id: "anx-journal",
-    title: "Anx Journal",
-    skills: ["Next.js", "React", "Tailwind CSS", "GitHub App", "Cloudflare"],
-    description: `个人博客平台，文章存在 GitHub 仓库里，通过 GitHub App 在线写作与发布。
+    id: "career-agent",
+    title: "Career Agent",
+    link: "https://github.com/AnxForever/yamlresume",
+    skills: ["TypeScript", "LLM Agent", "SQLite", "Zod"],
+    description: `面向「岗位描述 + 候选人材料 → 有证据依据的定制简历」的多阶段 LLM 工作流。
 
-- 首页是可拖拽重排的卡片网格，文章按日期与分类归档，现有 49 篇。
-- 内置 Markdown 编辑器、评论、点赞与留言板；Marked + Shiki + KaTeX 渲染，支持代码高亮与数学公式。
-- 可部署到 Vercel 或 Cloudflare Workers。`,
+- 阶段由代码预先决定，不是靠模型自由规划：材料归一化 → 岗位分析 → 确定性需求匹配 → 证据约束的草稿生成 → 事实与 Schema 校验 → 渲染。
+- 每条事实绑定稳定的 evidence ID，输出经校验才进入渲染，避免模型凭空补写经历。
+- 含结构化输出校验与 Repair、离线 EvalCase，以及 SQLite Run Store / outbox / lease。
+
+排版引擎（CLI、模板、LaTeX 流水线）来自上游 [YAMLResume](https://github.com/yamlresume/yamlresume)，本项目是其上的工作流、API、工作台与评测部分。项目仍在开发验证阶段。`,
+  },
+  {
+    id: "chinese-ai-detector",
+    title: "中文 AI 生成文本检测",
+    link: "https://huggingface.co/AnxForever/chinese-ai-detector-bert",
+    skills: ["Python", "BERT", "PyTorch", "Hugging Face"],
+    description: `本科毕业设计：基于 BERT 微调的中文 AI 生成文本检测与边界定位，模型与数据集已发布在 Hugging Face。
+
+- 对数据来源、重复文本和长文误判做了分组分析。
+
+评估结果是离线实验，不代表新模型或真实业务场景的准确率。`,
   },
   {
     id: "paperden",
@@ -46,13 +63,6 @@ export const PROJECTS: Project[] = [
 - 图像生成使用 Ark Seedream，前端 React、TypeScript 与 Zustand，后端 FastAPI 与 SQLite。
 
 目前只有项目介绍，暂无公开体验地址。`,
-  },
-  {
-    id: "yamlresume",
-    title: "yamlresume",
-    link: "https://github.com/AnxForever/yamlresume",
-    skills: ["TypeScript", "YAML", "LLM"],
-    description: `基于 YAMLResume 的简历定制 agent：每一条生成的表述都能回溯到候选人自己的材料。`,
   },
   {
     id: "desktop-ui-design-extract",

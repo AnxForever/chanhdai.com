@@ -1,4 +1,112 @@
+import {
+  ClaudeIcon,
+  FastapiIcon,
+  HuggingFaceIcon,
+  McpIcon,
+  NextJsIcon,
+  NodeJsIcon,
+  PythonIcon,
+  PytorchIcon,
+  ReactIcon,
+  SqliteIcon,
+  TailwindCssIcon,
+  TsIcon,
+  VercelIcon,
+} from "@/components/icons"
+
 import type { TechStack } from "../types/tech-stack"
 
-/** Cleared with the upstream author's content — add your own entries. */
-export const TECH_STACK: TechStack[] = []
+export const TECH_STACK: TechStack[] = [
+  // Grouped by category, in the order the section should read.
+  {
+    key: "typescript",
+    title: "TypeScript",
+    href: "https://www.typescriptlang.org",
+    icon: <TsIcon />,
+    categories: ["语言"],
+  },
+  {
+    key: "python",
+    title: "Python",
+    href: "https://www.python.org",
+    icon: <PythonIcon />,
+    categories: ["语言"],
+  },
+  {
+    key: "react",
+    title: "React",
+    href: "https://react.dev",
+    icon: <ReactIcon />,
+    categories: ["前端"],
+  },
+  {
+    key: "nextjs",
+    title: "Next.js",
+    href: "https://nextjs.org",
+    icon: <NextJsIcon />,
+    categories: ["前端"],
+  },
+  {
+    key: "tailwindcss",
+    title: "Tailwind CSS",
+    href: "https://tailwindcss.com",
+    icon: <TailwindCssIcon />,
+    categories: ["前端"],
+  },
+  {
+    key: "nodejs",
+    title: "Node.js",
+    href: "https://nodejs.org",
+    icon: <NodeJsIcon />,
+    categories: ["后端与数据"],
+  },
+  {
+    key: "fastapi",
+    title: "FastAPI",
+    href: "https://fastapi.tiangolo.com",
+    icon: <FastapiIcon />,
+    categories: ["后端与数据"],
+  },
+  {
+    key: "sqlite",
+    title: "SQLite",
+    href: "https://sqlite.org",
+    icon: <SqliteIcon />,
+    categories: ["后端与数据"],
+  },
+  {
+    key: "mcp",
+    title: "MCP",
+    href: "https://modelcontextprotocol.io",
+    icon: <McpIcon />,
+    categories: ["AI"],
+  },
+  {
+    key: "claude-code",
+    title: "Claude Code",
+    href: "https://www.anthropic.com/claude-code",
+    icon: <ClaudeIcon />,
+    categories: ["AI"],
+  },
+  {
+    key: "pytorch",
+    title: "PyTorch",
+    href: "https://pytorch.org",
+    icon: <PytorchIcon />,
+    categories: ["AI"],
+  },
+  {
+    key: "huggingface",
+    title: "Hugging Face",
+    href: "https://huggingface.co",
+    icon: <HuggingFaceIcon />,
+    categories: ["AI"],
+  },
+  {
+    key: "vercel",
+    title: "Vercel",
+    href: "https://vercel.com",
+    icon: <VercelIcon />,
+    categories: ["基础设施"],
+  },
+]
