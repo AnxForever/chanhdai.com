@@ -1,65 +1,34 @@
 import type { User } from "@/features/portfolio/types/user"
 
 export const USER: User = {
-  firstName: "Chánh Đại",
-  lastName: "Nguyễn",
-  displayName: "Chánh Đại",
-  username: "ncdai",
-  gender: "male",
-  pronouns: "he/him",
-  bio: "Creating with code. Small details matter.",
+  firstName: "Anx",
+  lastName: "",
+  displayName: "Anx",
+  username: "AnxForever",
+  bio: "前端设计与 AI 编程。记录日常，折腾想法，也收藏一些舍不得关掉的网页。",
+  // Rendered as plain text, not markdown — keep these free of link syntax.
   flipSentences: [
-    "Creating with code. Small details matter.",
-    "Design Engineer.",
-    "Open source contributor.",
-    "I own a vintage iPhone.",
+    "前端设计与 AI 编程。",
+    "在写 StyleKit。",
+    "记录日常，折腾想法。",
   ],
-  address: "Ho Chi Minh City, Viet Nam",
-  phoneNumberB64: "Kzg0Nzc3ODg4MTQ4", // E.164 format, base64 encoded (https://t.io.vn/base64-string-converter)
-  emailB64: "ZGFpQGNoYW5oZGFpLmNvbQ==", // base64 encoded
-  website: "https://chanhdai.com",
-  jobTitle: "Design Engineer",
-  jobs: [
-    {
-      title: "Design Engineer",
-      company: "shadcncraft",
-      website: "https://shadcncraft.com?atp=ncdai",
-      experienceId: "shadcncraft",
-    },
-    {
-      title: "Founder",
-      company: "Quaric",
-      website: "https://quaric.com",
-      experienceId: "quaric",
-    },
-  ],
-  about: `- I’m Chánh Đại (call me Dai) — a Design Engineer with 5+ years of experience, known for pixel-perfect execution and an obsessive attention to detail.
-- Passionate about exploring new technologies and turning ideas into reality through polished, thoughtfully crafted projects.
-- Creator of [chanhdai.com](https://github.com/ncdai/chanhdai.com) (2.2k stars), [React Wheel Picker](https://react-wheel-picker.chanhdai.com) (50k+ weekly downloads, ▲ Vercel OSS Program), and [ZaDark](https://zadark.com) (80k+ downloads, 30k+ users) — peak metrics.
+  // 来自 GitHub 公开资料；不想公开的话删掉这一行即可。
+  address: "西安，中国",
+  // 邮箱是 base64 编码的，避免被爬虫直接抓走。
+  emailB64: "YW54Zm9yZXZlckBxcS5jb20=",
+  // phoneNumberB64 / jobTitle 暂未公开 —— 留空即可，
+  // 对应的 overview 条目会自动跳过，不会渲染空行。
+  website: "https://anxforever.cn/",
+  jobs: [],
+  about: `- 我是 Anx，在西安科技大学读书。做前端设计，也做 AI 编程。
+- 在维护 [StyleKit](https://github.com/AnxForever/stylekit)（[线上](https://www.stylekit.top)）—— 面向 AI 生成网页的开源视觉风格库，148 套精选风格。也写 [Anx Journal](https://anxforever.cn/)，一个自己搭的博客平台。
+- 平时写 AI 工具（Codex、Claude Code、MCP）、前端设计基础和求职准备这几类东西，喜欢折腾论文阅读器、终端、设计系统。
 `,
-  avatar: "https://assets.chanhdai.com/images/chanhdai-avatar-ghibli.webp",
-  avatarSketch: "https://assets.chanhdai.com/images/avatar-sketch.webp",
-  avatarVariants: {
-    lightOff: "https://assets.chanhdai.com/images/avatar-light-off.webp",
-    lightOn: "https://assets.chanhdai.com/images/avatar-light-on.webp",
-    darkOff: "https://assets.chanhdai.com/images/avatar-dark-off.webp",
-    darkOn: "https://assets.chanhdai.com/images/avatar-dark-on.webp",
-  },
+  avatar: "/images/anx-avatar.jpg",
+  avatarSketch: "/images/anx-avatar.jpg",
   ogImage:
-    "https://assets.chanhdai.com/images/screenshot-og-image-dark.png?t=1778602757",
-  namePronunciationUrl: "https://assets.chanhdai.com/audio/chanhdai.mp3",
-  timeZone: "Asia/Ho_Chi_Minh",
-  keywords: [
-    "ncdai",
-    "nguyenchanhdai",
-    "nguyen chanh dai",
-    "chanhdai",
-    "chanh dai",
-    "iamncdai",
-    "quaric",
-    "zadark",
-    "nguyễn chánh đại",
-    "chánh đại",
-  ],
-  dateCreated: "2023-10-20", // YYYY-MM-DD
+    "/og/simple?title=Anx&description=%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%20AI%20%E7%BC%96%E7%A8%8B%E3%80%82",
+  keywords: ["anx", "anxforever", "stylekit", "anx journal"],
+  timeZone: "Asia/Shanghai",
+  dateCreated: "2026-09-26",
 }

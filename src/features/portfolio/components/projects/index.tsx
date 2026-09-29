@@ -13,6 +13,11 @@ import { ProjectItem } from "./project-item"
 const ID = "projects"
 
 export function Projects() {
+  // Nothing to show until PROJECTS is filled in.
+  if (PROJECTS.length === 0) {
+    return null
+  }
+
   return (
     <Panel id={ID}>
       <PanelHeader>

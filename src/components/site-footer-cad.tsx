@@ -1,20 +1,17 @@
 import Link from "next/link"
 
-import { LICENSE, SOURCE_CODE_GITHUB_URL } from "@/config/site"
+import { LICENSE, SITE_DOMAIN, SOURCE_CODE_GITHUB_URL } from "@/config/site"
 import type { BuildInfo } from "@/lib/build-info"
 import { getBuildInfo, getStack } from "@/lib/build-info"
 import { cn } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
-import { DmcaIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"
+import { GitHubIcon } from "@/components/icons"
 import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
 
 // Imported here rather than through `@/config/site`, which client components
 // pull in, to keep the manifest out of client bundles.
 import packageJson from "../../package.json"
-// Precomputed by `pnpm registry:build`, so the count costs no registry import.
-import registryStats from "../../registry-stats.json"
-import { ChanhDaiMark } from "./chanhdai-mark"
+import { AnxMark } from "./anx-mark"
 
 const INSPIRED_BY = [
   "Tailwind CSS",
@@ -24,23 +21,20 @@ const INSPIRED_BY = [
   "Devouring Details",
   "Skiper UI",
   "Making Software",
-  "shadcncraft",
+  "chanhdai.com",
 ]
 
-const OPENPANEL_URL =
-  "https://openpanel.dev?utm_source=chanhdai.com&utm_medium=referral&utm_campaign=footer"
+const OPENPANEL_URL = `https://openpanel.dev?utm_source=${SITE_DOMAIN}&utm_medium=referral&utm_campaign=footer`
 
-// Not derived from `SITE_INFO.url`: that follows `NEXT_PUBLIC_APP_URL` and
-// would read `ncdai.localhost` in dev.
-const SITE_TITLE = "chanhdai.com"
+// Not `SITE_INFO.url`: that follows `NEXT_PUBLIC_APP_URL` and would read the
+// local dev origin rather than the published host.
+const SITE_TITLE = SITE_DOMAIN
 
 const SITE_SUBTITLE = packageJson.description
 
 /** Footer laid out as the title block of a technical drawing. */
 export function SiteFooterCad() {
-  const xLink = SOCIAL.x
   const githubLink = SOCIAL.github
-  const linkedinLink = SOCIAL.linkedin
 
   const build = getBuildInfo()
   const stack = getStack()
@@ -64,11 +58,11 @@ export function SiteFooterCad() {
             <Field label="Crafted by">
               <a
                 className="link-underline"
-                href={xLink.href}
+                href={githubLink.href}
                 target="_blank"
                 rel="noopener"
               >
-                {xLink.handle}
+                {githubLink.handle}
               </a>
             </Field>
 
@@ -79,8 +73,6 @@ export function SiteFooterCad() {
             <Field label="Date">
               <time dateTime={build.date}>{build.date}</time>
             </Field>
-
-            <Field label="Registry">{registryStats.total} items</Field>
 
             <Field label="Deployed on">
               <span className="font-sans" aria-hidden>
@@ -194,23 +186,8 @@ export function SiteFooterCad() {
             className="mr-auto text-muted-foreground transition-[color] hover:text-foreground"
             aria-label="Home"
           >
-            <ChanhDaiMark className="h-4" />
+            <AnxMark className="h-4" />
           </Link>
-
-          <a
-            className="flex items-center transition-[color] hover:text-foreground"
-            href={xLink.href}
-            target="_blank"
-            rel="noopener"
-            aria-label="X Profile"
-          >
-            <XIcon className="size-4" />
-          </a>
-
-          <Separator
-            orientation="vertical"
-            className="data-vertical:h-4 data-vertical:self-center"
-          />
 
           <a
             className="flex items-center transition-[color] hover:text-foreground"
@@ -220,39 +197,6 @@ export function SiteFooterCad() {
             aria-label="GitHub Profile"
           >
             <GitHubIcon className="size-4" />
-          </a>
-
-          <Separator
-            orientation="vertical"
-            className="data-vertical:h-4 data-vertical:self-center"
-          />
-
-          <a
-            className="flex items-center transition-[color] hover:text-foreground"
-            href={linkedinLink.href}
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn Profile"
-          >
-            <LinkedInIcon className="size-4" />
-          </a>
-
-          <Separator
-            orientation="vertical"
-            className="data-vertical:h-4 data-vertical:self-center"
-          />
-
-          <a
-            className="flex items-center transition-[color] hover:text-foreground"
-            href={
-              process.env.NEXT_PUBLIC_DMCA_URL ||
-              "https://www.dmca.com/ProtectionPro.aspx"
-            }
-            target="_blank"
-            rel="noopener"
-            aria-label="DMCA.com Protection Status"
-          >
-            <DmcaIcon className="h-4 w-auto" />
           </a>
         </div>
       </div>

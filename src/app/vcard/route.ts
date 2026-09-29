@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises"
+import { join } from "node:path"
 import { NextResponse } from "next/server"
 import { decodeEmail, decodePhoneNumber } from "@/utils/string"
 import sharp from "sharp"
@@ -12,12 +14,21 @@ export const dynamicParams = false
 export async function GET() {
   const card = new VCard()
 
-  card
-    .addName(USER.lastName, USER.firstName)
-    .addPhoneNumber(decodePhoneNumber(USER.phoneNumberB64))
-    .addAddress(USER.address)
-    .addEmail(decodeEmail(USER.emailB64))
-    .addURL(USER.website)
+  // Contact fields are optional: an unpublished one is left out of the card
+  // rather than emitted empty.
+  card.addName(USER.lastName, USER.firstName).addURL(USER.website)
+
+  if (USER.phoneNumberB64) {
+    card.addPhoneNumber(decodePhoneNumber(USER.phoneNumberB64))
+  }
+
+  if (USER.address) {
+    card.addAddress(USER.address)
+  }
+
+  if (USER.emailB64) {
+    card.addEmail(decodeEmail(USER.emailB64))
+  }
 
   const photo = await getVCardPhoto(USER.avatar)
   if (photo) {
@@ -40,32 +51,44 @@ export async function GET() {
 
 async function getVCardPhoto(url: string) {
   try {
-    const res = await fetch(url)
+    const buffer = await readImage(url)
 
-    if (!res.ok) {
-      return null
-    }
-
-    const buffer = Buffer.from(await res.arrayBuffer())
-    if (buffer.length === 0) {
-      return null
-    }
-
-    const contentType = res.headers.get("Content-Type") || ""
-    if (!contentType.startsWith("image/")) {
+    if (!buffer || buffer.length === 0) {
       return null
     }
 
     const jpegBuffer = await convertImageToJpeg(buffer)
-    const image = jpegBuffer.toString("base64")
 
     return {
-      image,
+      image: jpegBuffer.toString("base64"),
       mime: "jpeg",
     }
   } catch {
     return null
   }
+}
+
+/**
+ * The avatar is served from `public/`, so at build time there is no origin to
+ * fetch it from — read it off disk instead. Absolute URLs still go over HTTP.
+ */
+async function readImage(url: string): Promise<Buffer | null> {
+  if (url.startsWith("/")) {
+    return readFile(join(process.cwd(), "public", url))
+  }
+
+  const res = await fetch(url)
+
+  if (!res.ok) {
+    return null
+  }
+
+  const contentType = res.headers.get("Content-Type") || ""
+  if (!contentType.startsWith("image/")) {
+    return null
+  }
+
+  return Buffer.from(await res.arrayBuffer())
 }
 
 async function convertImageToJpeg(imageBuffer: Buffer): Promise<Buffer> {

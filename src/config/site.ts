@@ -4,9 +4,18 @@ import type { NavItem } from "@/types/nav"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
 import { USER } from "@/features/portfolio/data/user"
 
+/**
+ * The published origin, without protocol. Single place to change when the
+ * deployment target is settled; `.env.local` overrides the dev origin through
+ * `NEXT_PUBLIC_APP_URL`, and production should set that variable too.
+ *
+ * TODO: replace with the Vercel production domain before publishing.
+ */
+export const SITE_DOMAIN = "anxforever.github.io"
+
 export const SITE_INFO = {
   name: USER.displayName,
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://chanhdai.com",
+  url: process.env.NEXT_PUBLIC_APP_URL || `https://${SITE_DOMAIN}`,
   ogImage: USER.ogImage,
   description: USER.bio,
   keywords: USER.keywords,
@@ -14,7 +23,7 @@ export const SITE_INFO = {
 
 export const LICENSE = {
   name: "MIT License",
-  url: "https://github.com/ncdai/chanhdai.com/blob/main/LICENSE",
+  url: "https://github.com/AnxForever/chanhdai.com/blob/main/LICENSE",
 }
 
 export const META_THEME_COLORS = {
@@ -23,14 +32,6 @@ export const META_THEME_COLORS = {
 }
 
 export const MAIN_NAV: NavItem<Route>[] = [
-  {
-    title: "Components",
-    href: "/components",
-  },
-  {
-    title: "Blocks",
-    href: "/blocks",
-  },
   {
     title: "Craft",
     href: "/craft",
@@ -53,13 +54,20 @@ export const MOBILE_NAV: NavItem<Route>[] = [
   ...MAIN_NAV,
 ]
 
-export const X_HANDLE = SOCIAL.x.handle
-export const GITHUB_USERNAME = SOCIAL.github.handle
-export const SOURCE_CODE_GITHUB_REPO = "ncdai/chanhdai.com"
-export const SOURCE_CODE_GITHUB_URL = "https://github.com/ncdai/chanhdai.com"
+/**
+ * No X account yet. The `twitter.site` / `twitter.creator` metadata fields are
+ * optional, so pages can keep passing this through and Next simply omits them.
+ * Once `SOCIAL.x` is back on, point this at `SOCIAL.x.handle`.
+ */
+export const X_HANDLE: string | undefined = undefined
 
-export const SPONSORSHIP_URL = "https://github.com/sponsors/ncdai"
+export const GITHUB_USERNAME = SOCIAL.github.handle
+export const SOURCE_CODE_GITHUB_REPO = "AnxForever/chanhdai.com"
+export const SOURCE_CODE_GITHUB_URL =
+  "https://github.com/AnxForever/chanhdai.com"
+
+export const SPONSORSHIP_URL = "https://github.com/sponsors/AnxForever"
 
 export const UTM_PARAMS = {
-  utm_source: "chanhdai.com",
+  utm_source: SITE_DOMAIN,
 }

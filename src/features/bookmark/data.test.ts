@@ -12,7 +12,10 @@ describe("BOOKMARKS", () => {
   it("has parseable urls and dates", () => {
     for (const bookmark of BOOKMARKS) {
       expect(() => new URL(bookmark.url)).not.toThrow()
-      expect(new Date(bookmark.bookmarkedAt).getTime()).not.toBeNaN()
+
+      if (bookmark.bookmarkedAt) {
+        expect(new Date(bookmark.bookmarkedAt).getTime()).not.toBeNaN()
+      }
     }
   })
 })

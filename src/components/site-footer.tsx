@@ -1,13 +1,11 @@
-import { LICENSE, SOURCE_CODE_GITHUB_URL } from "@/config/site"
+import { LICENSE, SOURCE_CODE_GITHUB_URL, UTM_PARAMS } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { DmcaIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"
+import { GitHubIcon } from "@/components/icons"
 import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
 
 export function SiteFooter() {
-  const xLink = SOCIAL.x
   const githubLink = SOCIAL.github
-  const linkedinLink = SOCIAL.linkedin
 
   return (
     <footer className="max-w-screen overflow-x-clip px-2">
@@ -22,12 +20,30 @@ export function SiteFooter() {
             <dd>
               <a
                 className="link-underline"
-                href={xLink.href}
+                href={githubLink.href}
                 target="_blank"
                 rel="noopener"
               >
-                {xLink.handle}
+                {githubLink.handle}
               </a>
+            </dd>
+          </Item>
+
+          <Item>
+            <dt>Based on</dt>
+            <dd>
+              <ul>
+                <li>
+                  <a
+                    className="link-underline"
+                    href="https://chanhdai.com"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    chanhdai.com
+                  </a>
+                </li>
+              </ul>
             </dd>
           </Item>
 
@@ -58,7 +74,7 @@ export function SiteFooter() {
                 <li>
                   <a
                     className="link-underline"
-                    href="https://openpanel.dev?utm_source=chanhdai.com&utm_medium=referral&utm_campaign=footer"
+                    href="https://openpanel.dev?utm_source=anxforever.github.io&utm_medium=referral&utm_campaign=footer"
                     target="_blank"
                     rel="noopener"
                   >
@@ -103,51 +119,12 @@ export function SiteFooter() {
           <div className="mx-auto flex items-center justify-center gap-3 border-x border-line bg-background px-4">
             <a
               className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href={xLink.href}
-              target="_blank"
-              rel="noopener"
-              aria-label="X Profile"
-            >
-              <XIcon className="size-4" />
-            </a>
-
-            <Separator />
-
-            <a
-              className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
               href={githubLink.href}
               target="_blank"
               rel="noopener"
               aria-label="GitHub Profile"
             >
               <GitHubIcon className="size-4" />
-            </a>
-
-            <Separator />
-
-            <a
-              className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href={linkedinLink.href}
-              target="_blank"
-              rel="noopener"
-              aria-label="LinkedIn Profile"
-            >
-              <LinkedInIcon className="size-4" />
-            </a>
-
-            <Separator />
-
-            <a
-              className="flex text-muted-foreground transition-[color] hover:text-foreground"
-              href={
-                process.env.NEXT_PUBLIC_DMCA_URL ||
-                "https://www.dmca.com/ProtectionPro.aspx"
-              }
-              target="_blank"
-              rel="noopener"
-              aria-label="DMCA.com Protection Status"
-            >
-              <DmcaIcon className="h-4.5 w-auto" />
             </a>
           </div>
         </div>
@@ -164,10 +141,6 @@ export function SiteFooter() {
       <div className="pb-[env(safe-area-inset-bottom,0)]" />
     </footer>
   )
-}
-
-function Separator({ className, ...props }: React.ComponentProps<"div">) {
-  return <div className={cn("flex h-11 w-px bg-line", className)} {...props} />
 }
 
 function Item({ className, ...props }: React.ComponentProps<"div">) {

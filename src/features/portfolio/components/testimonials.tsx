@@ -61,6 +61,12 @@ export function Testimonials() {
   const isDesktop = useMediaQuery("(min-width: 40rem)") // sm breakpoint
   const play = isPageInView && isInView && isDesktop
 
+  // Nothing to show until the testimonial pools are filled in. Guarded after
+  // the hooks so their order stays stable across renders.
+  if (TESTIMONIALS.length === 0) {
+    return null
+  }
+
   return (
     <Panel ref={ref} id={ID}>
       <div className="h-px" />
@@ -69,10 +75,7 @@ export function Testimonials() {
 
       <div className="flex items-center justify-center py-4">
         <h2 className="text-center text-sm/none font-medium text-muted-foreground">
-          Trusted by top builders on{" "}
-          <a href={SOCIAL.x.href} target="_blank" rel="noopener" aria-label="X">
-            𝕏
-          </a>
+          Trusted by top builders
         </h2>
       </div>
 

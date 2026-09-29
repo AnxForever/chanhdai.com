@@ -1,20 +1,22 @@
-import { Suspense } from "react"
-
 import { getGitHubContributions } from "@/features/portfolio/data/github-contributions"
 
 import { Panel } from "../panel"
-import { GitHubContributionFallback, GitHubContributionGraph } from "./graph"
+import { GitHubContributionGraph } from "./graph"
 
-export function GitHubContributions() {
-  const contributions = getGitHubContributions()
+export async function GitHubContributions() {
+  const contributions = await getGitHubContributions()
+
+  // Requires a contributions API (`NEXT_PUBLIC_GITHUB_CONTRIBUTIONS_API_URL`).
+  // Without one, skip the section instead of rendering an empty graph.
+  if (contributions.length === 0) {
+    return null
+  }
 
   return (
     <Panel className="screen-line-top-border">
       <h2 className="sr-only">GitHub contributions</h2>
 
-      <Suspense fallback={<GitHubContributionFallback />}>
-        <GitHubContributionGraph contributions={contributions} />
-      </Suspense>
+      <GitHubContributionGraph contributions={Promise.resolve(contributions)} />
     </Panel>
   )
 }

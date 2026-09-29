@@ -9,8 +9,10 @@ type GitHubContributionsResponse = {
 export const getCachedContributions = unstable_cache(
   async (username: string) => {
     const apiUrl = process.env.NEXT_PUBLIC_GITHUB_CONTRIBUTIONS_API_URL
+    // No contributions API configured — callers treat an empty list as
+    // "nothing to show" rather than an error worth failing the page over.
     if (!apiUrl) {
-      throw new Error("NEXT_PUBLIC_GITHUB_CONTRIBUTIONS_API_URL is not set")
+      return []
     }
 
     const res = await fetch(`${apiUrl}/${username}?y=last`)

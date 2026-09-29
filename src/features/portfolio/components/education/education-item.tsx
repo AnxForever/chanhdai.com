@@ -16,8 +16,10 @@ import { Markdown } from "@/components/markdown"
 import type { Education } from "@/features/portfolio/types/education"
 
 export function EducationItem({ item }: { item: Education }) {
-  const { start, end } = item.period
-  const isOngoing = !end
+  const { period } = item
+  const isOngoing = !period?.end
+  // Every field in the meta row is optional, so the row itself is too.
+  const hasMeta = Boolean(period || item.degree || item.fieldOfStudy)
 
   return (
     <div className="group/education-item relative before:absolute before:left-3 before:h-full before:w-px before:bg-border">
@@ -49,54 +51,62 @@ export function EducationItem({ item }: { item: Education }) {
             </div>
           </div>
 
-          <dl className="flex flex-wrap items-center gap-x-2 pl-9 text-sm text-muted-foreground">
-            <div>
-              <dt className="sr-only">Study period</dt>
-              <dd className="flex items-center gap-0.5 tabular-nums">
-                <span>{start}</span>
-                <span className="font-mono">—</span>
-                {isOngoing ? (
-                  <InfinityIcon
-                    className="size-4.5 translate-y-[0.5px]"
-                    aria-label="Present"
-                    strokeWidth={1.5}
+          {hasMeta && (
+            <dl className="flex flex-wrap items-center gap-x-2 pl-9 text-sm text-muted-foreground">
+              {period && (
+                <div>
+                  <dt className="sr-only">Study period</dt>
+                  <dd className="flex items-center gap-0.5 tabular-nums">
+                    <span>{period.start}</span>
+                    <span className="font-mono">—</span>
+                    {isOngoing ? (
+                      <InfinityIcon
+                        className="size-4.5 translate-y-[0.5px]"
+                        aria-label="Present"
+                        strokeWidth={1.5}
+                      />
+                    ) : (
+                      <span>{period.end}</span>
+                    )}
+                  </dd>
+                </div>
+              )}
+
+              {item.degree && (
+                <>
+                  {/* The separator only joins two items; with no period above,
+                    it would render as a stray leading divider. */}
+                  {(period || item.fieldOfStudy) && (
+                    <Separator
+                      className="data-vertical:h-4 data-vertical:self-center"
+                      orientation="vertical"
+                      aria-hidden
+                    />
+                  )}
+
+                  <div>
+                    <dt className="sr-only">Degree</dt>
+                    <dd>{item.degree}</dd>
+                  </div>
+                </>
+              )}
+
+              {item.fieldOfStudy && (
+                <>
+                  <Separator
+                    className="data-vertical:h-4 data-vertical:self-center"
+                    orientation="vertical"
+                    aria-hidden
                   />
-                ) : (
-                  <span>{end}</span>
-                )}
-              </dd>
-            </div>
 
-            {item.degree && (
-              <>
-                <Separator
-                  className="data-vertical:h-4 data-vertical:self-center"
-                  orientation="vertical"
-                  aria-hidden
-                />
-
-                <div>
-                  <dt className="sr-only">Degree</dt>
-                  <dd>{item.degree}</dd>
-                </div>
-              </>
-            )}
-
-            {item.fieldOfStudy && (
-              <>
-                <Separator
-                  className="data-vertical:h-4 data-vertical:self-center"
-                  orientation="vertical"
-                  aria-hidden
-                />
-
-                <div>
-                  <dt className="sr-only">Field of study</dt>
-                  <dd>{item.fieldOfStudy}</dd>
-                </div>
-              </>
-            )}
-          </dl>
+                  <div>
+                    <dt className="sr-only">Field of study</dt>
+                    <dd>{item.fieldOfStudy}</dd>
+                  </div>
+                </>
+              )}
+            </dl>
+          )}
         </CollapsibleTrigger>
 
         <CollapsibleContent className="overflow-hidden">

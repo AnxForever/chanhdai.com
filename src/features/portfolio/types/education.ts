@@ -3,7 +3,8 @@ export type Education = {
   school: string
   degree?: string
   fieldOfStudy?: string
-  period: {
+  /** Omitted when the years are unknown; the card then shows no period. */
+  period?: {
     start: string
     end?: string
   }

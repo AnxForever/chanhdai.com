@@ -1,10 +1,10 @@
-import { ChanhDaiMarkIsometric } from "@/features/portfolio/components/chanhdai-mark-isometric"
+import { AnxMarkSolid } from "@/features/portfolio/components/anx-mark-solid"
 
 export default function Page() {
   return (
     <div className="max-w-screen overflow-x-clip">
       <div className="mx-auto flex h-screen flex-col justify-center md:max-w-3xl">
-        <ChanhDaiMarkIsometric />
+        <AnxMarkSolid />
       </div>
     </div>
   )

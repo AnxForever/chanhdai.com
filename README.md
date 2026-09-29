@@ -1,326 +1,98 @@
-<!-- # [chanhdai.com](https://chanhdai.com) -->
+# Anx 的个人网站
 
-<p>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/header/grid.svg?title=chanhdai.com&amp;subtitle=A+pixel-perfect+dev+portfolio+and+shadcn+registry.&amp;logo=data%3Aimage%2Fsvg%2Bxml%2C%3Csvg+xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27+fill%3D%27none%27+viewBox%3D%270+0+24+24%27%3E%3Cpath+fill%3D%27%2523000%27+d%3D%27M9+18H3v-3h6zm12-9h-6v6h6v3h-9V6h9zM3+15H0V9h3zm21+0h-3V9h3zM9+9H3V6h6z%27%2F%3E%3C%2Fsvg%3E&amp;size=wide&amp;mode=dark&amp;theme=zinc&amp;font=geist" /><img alt="header" src="https://shieldcn.dev/header/grid.svg?title=chanhdai.com&amp;subtitle=A+pixel-perfect+dev+portfolio+and+shadcn+registry.&amp;logo=data%3Aimage%2Fsvg%2Bxml%2C%3Csvg+xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27+fill%3D%27none%27+viewBox%3D%270+0+24+24%27%3E%3Cpath+fill%3D%27%2523000%27+d%3D%27M9+18H3v-3h6zm12-9h-6v6h6v3h-9V6h9zM3+15H0V9h3zm21+0h-3V9h3zM9+9H3V6h6z%27%2F%3E%3C%2Fsvg%3E&amp;size=wide&amp;mode=light&amp;theme=zinc&amp;font=geist" /></picture>
-</p>
+个人网站。首页展示个人介绍、GitHub 贡献热力图与最近的内容入口，另有项目、文章、收藏、作品、经历等页面。
 
-<p>
-  <a href="https://github.com/ncdai/chanhdai.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/github/ncdai/chanhdai.com/license.svg?variant=outline&amp;font=geist" /><img alt="license" src="https://shieldcn.dev/github/ncdai/chanhdai.com/license.svg?variant=outline&amp;mode=light&amp;font=geist" /></picture></a>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/stars/ncdai/chanhdai.com.svg?variant=outline&amp;mode=dark&amp;font=geist"><img alt="GitHub Stars" src="https://www.shieldcn.dev/github/stars/ncdai/chanhdai.com.svg?variant=outline&amp;mode=light&amp;font=geist"></picture>
-  <a href="https://github.com/ncdai/chanhdai.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/views/repo/ncdai/chanhdai.com.svg?base=8541&amp;variant=outline&amp;font=geist" /><img alt="repo views" src="https://shieldcn.dev/views/repo/ncdai/chanhdai.com.svg?base=43218&amp;variant=outline&amp;mode=light&amp;font=geist" /></picture></a>
-</p>
+> **尚未发布。** 部署到 Vercel 后在项目设置里加 `NEXT_PUBLIC_APP_URL`，并同步改掉 `src/config/site.ts` 里的 `SITE_DOMAIN`（正文的绝对链接、JSON-LD、sitemap、OG 图都从这两处取值）。
 
-A pixel-perfect dev portfolio and shadcn registry showcasing my work as a Design Engineer.
+## 技术栈
 
-→ Live site: [chanhdai.com](https://chanhdai.com)
+- **Next.js 16**（App Router、Turbopack）
+- **React 19** + **TypeScript**（strict）
+- **Tailwind CSS v4** + **shadcn/ui**
+- **MDX** —— 文章与文档
+- **Motion** —— 动效；**Vitest** —— 测试
+- **pnpm** —— 包管理
 
-[![screenshot-dark](https://assets.chanhdai.com/images/screenshot-desktop-dark.webp?t=1778602757#gh-dark-mode-only)](https://chanhdai.com#gh-dark-mode-only)
-[![screenshot-light](https://assets.chanhdai.com/images/screenshot-desktop-light.webp?t=1778602757#gh-light-mode-only)](https://chanhdai.com#gh-light-mode-only)
+## 本地运行
 
-## Overview
+```bash
+pnpm install
+cp .env.example .env.local   # 按需填写，见下
+pnpm dev
+```
 
-### Stack
+打开 <https://anx.localhost>（`next.config.ts` 的 `allowedDevOrigins` 里配的就是这个域名，`.env.local` 的 `NEXT_PUBLIC_APP_URL` 也应指向它 —— 用裸端口会让生成的绝对链接对不上）。
 
-- Next.js 16
-- Tailwind CSS v4
-- shadcn/ui
+常用命令：
 
-### Featured
+```bash
+pnpm build          # 生产构建
+pnpm start          # 起生产服务
+pnpm test:run       # 跑一次测试
+pnpm check-types    # 类型检查
+pnpm lint           # ESLint
+pnpm format:write   # Prettier
+```
 
-- Clean & modern design
-- Light/Dark themes
-- vCard integration
-- SEO optimized ([JSON-LD schema](https://json-ld.org), sitemap, robots)
-- AI-ready with [/llms.txt](https://llmstxt.org)
-- Spam-protected email
-- Installable as PWA
-- Analytics with [OpenPanel](https://openpanel.dev)
+推代码前 CI 会跑 `lint` / `format:check` / `build` / `check-types`，本地先过一遍。
 
-### Content
+## 页面
 
-Centralized document system powered by MDX:
+| 地址 | 内容 |
+| --- | --- |
+| `/` | 个人介绍、GitHub 贡献热力图、About、Blog、Education、Projects |
+| `/blog` | 文章列表（含搜索） |
+| `/blog/<slug>` | 文章正文 |
+| `/bookmarks` | 收藏，按分类筛选 |
+| `/craft` | 作品展示 |
+| `/timeline` | 时间线 |
+| `/testimonials` | 评价 |
+| `/sponsors` | 赞助 |
 
-- Unified content layer for blog posts and component docs
-- Category-based content organization
-- Raw `.md` endpoints for AI readability
-- Syntax highlighting with code blocks
-- Dynamic OG images for rich link previews
-- RSS feed for content distribution
+AI 与爬虫可读的纯文本入口：`/llms.txt`、`/index.md`，以及每篇文章和每个栏目的 `.md` 版本（如 `/blog/a-place-of-my-own.md`）。发 `Accept: text/markdown` 请求网页地址也会返回 markdown。
 
-### Registry
+## 内容维护
 
-Easily build and distribute reusable components, hooks, and pages using a custom registry powered by the [shadcn CLI](https://ui.shadcn.com/docs/cli).
+内容和页面组件分开，改内容不用动组件。
 
-Each entry is well-documented and includes:
+| 内容 | 位置 |
+| --- | --- |
+| 个人信息（名字、简介、头像、位置、时区） | `src/features/portfolio/data/user.ts` |
+| 社交账号 | `src/features/portfolio/data/social-links.ts` |
+| 站点配置（域名、导航、许可） | `src/config/site.ts` |
+| 项目 | `src/features/portfolio/data/projects.tsx` |
+| 经历 / 教育 / 技能栈 | `src/features/portfolio/data/{experiences,education,tech-stack}.tsx` |
+| 奖项、认证、知识产权 | `src/features/portfolio/data/{awards,certifications,intellectual-property}.ts` |
+| 时间线 | `src/features/portfolio/data/timeline.ts` |
+| 评价 | `src/features/portfolio/data/testimonials.tsx` |
+| 赞助商 | `src/features/sponsor/data.tsx` |
+| 收藏 | `src/features/bookmark/data.tsx` |
+| 作品 | `src/features/craft/data.ts` |
+| 文章 | `src/features/doc/content/blog/*.mdx` |
+| 头像与图标 | `public/images/`、`public/*` |
 
-- Live preview & code snippets
-- Beautiful, readable code blocks
-- One-click command blocks (pnpm, npm, yarn, bun)
+几个约定：
 
-## Development
+- **列表为空时整个区块不渲染。** 不想展示某个栏目，把对应数组清空即可，不会留下只有标题的空壳。
+- **日期、链接这类字段是选填的。** 项目没有公开链接、或不知道开始时间时，整个 `period` / `link` 字段省略即可，卡片会自动不显示那一项 —— 不要为了填满而编造。
+- **文章**用 MDX，frontmatter 需要 `title`、`description`、`createdAt`、`updatedAt`（`YYYY-MM-DD`）。分类由目录名决定，放在 `content/blog/` 下就是文章。
 
-Please refer to the [Development Guide](./DEVELOPMENT.md) for more details.
+## 环境变量
 
-## License
+全部可选，不配也能跑；只有需要对应功能时才填。详见 `.env.example`。
 
-Everything in this repository is licensed under the [MIT license](./LICENSE), with one exception: my name and my logo, which are covered by the [trademark and brand policy](./TRADEMARK.md).
+| 变量 | 作用 |
+| --- | --- |
+| `NEXT_PUBLIC_APP_URL` | 站点绝对地址，影响 JSON-LD、sitemap、OG 图 |
+| `NEXT_PUBLIC_GITHUB_CONTRIBUTIONS_API_URL` | 首页贡献热力图的接口，默认用公开的 [jogruber API](https://github.com/grubersjoe/github-contributions-api) |
+| `GITHUB_API_TOKEN` | 头部仓库 star 数。不填走匿名请求（有限流），也能用 |
+| `OPENPANEL_*` | OpenPanel 分析 |
+| `NEXT_PUBLIC_GTM_ID` | Google Tag Manager |
+| `DISCORD_FEEDBACK_WEBHOOK_URL` | 文档页「这篇有用吗」的回调；不填则打到本地控制台 |
+| `NEXT_PUBLIC_CARBON_ADS_*` | Carbon 广告；两个都留空则完全不渲染广告位 |
 
-So the code and the writing are yours. Fork it, copy it, quote it, translate it. Just make sure to <ins>remove all my personal information</ins> and swap the branding before publishing your website. It's awesome to see my code being useful to someone!
+## 来源与许可
 
-## Contributors
+本项目改造自 [ncdai/chanhdai.com](https://github.com/ncdai/chanhdai.com)，MIT 许可。原作者的版权声明保留在 [LICENSE](LICENSE) 中（MIT 要求），品牌相关的限制见 [TRADEMARK.md](TRADEMARK.md) —— 也就是说，代码可以随便用，但 `chanhdai` / `ncdai` 这些名字和他的头像、标识不是。
 
-<p>
-  <a href="https://github.com/ncdai/chanhdai.com/graphs/contributors"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/contributors/ncdai/chanhdai.com.svg?title=false&amp;size=48&amp;align=left&amp;mode=dark&amp;font=geist&amp;watermark=true" /><img alt="contributors" src="https://shieldcn.dev/contributors/ncdai/chanhdai.com.svg?title=false&amp;size=48&amp;align=left&amp;mode=light&amp;font=geist&amp;watermark=true" /></picture></a>
-</p>
-
-## Sponsors
-
-This project is proudly supported by:
-
-<table>
-  <tbody>
-    <tr>
-      <td colspan="3"><strong>Open Source Program</strong></td>
-    </tr>
-    <tr>
-      <td>
-        <a href="https://claude.com?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/claude-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/claude.svg"
-              alt="Claude"
-            />
-          </picture>
-        </a>
-      </td>
-      <td>
-        <a href="https://openpanel.dev/open-source?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/openpanel-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/openpanel.svg"
-              alt="OpenPanel"
-            />
-          </picture>
-        </a>
-      </td>
-      <td>
-        <a href="https://posthog.com/startups?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/posthog-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/posthog.svg"
-              alt="PostHog"
-            />
-          </picture>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3"><strong>Platinum Sponsors</strong></td>
-    </tr>
-    <tr>
-      <td>
-        <a href="https://www.nixtla.io?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/nixtla-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/nixtla.svg"
-              alt="Nixtla"
-            />
-          </picture>
-        </a>
-      </td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td colspan="3"><strong>Gold Sponsors</strong></td>
-    </tr>
-    <tr>
-      <td>
-        <a href="https://shadcnstudio.com?utm_source=chanhdai.com&utm_medium=banner&utm_campaign=github">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/shadcnstudio-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/shadcnstudio.svg"
-              alt="shadcnstudio.com"
-            />
-          </picture>
-        </a>
-      </td>
-      <td>
-        <a href="https://shadcnspace.com?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/shadcnspace-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/shadcnspace.svg"
-              alt="Shadcn Space"
-            />
-          </picture>
-        </a>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td colspan="3"><strong>Silver Sponsors</strong></td>
-    </tr>
-    <tr>
-      <td>
-        <a href="https://shadcncraft.com?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/shadcncraft-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/shadcncraft.svg"
-              alt="shadcncraft"
-            />
-          </picture>
-        </a>
-      </td>
-      <td>
-        <a href="https://www.shadcnblocks.com?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/shadcnblocks-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/shadcnblocks.svg"
-              alt="Shadcnblocks"
-            />
-          </picture>
-        </a>
-      </td>
-      <td>
-        <a href="https://reactbits.dev?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/reactbits-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/reactbits.svg"
-              alt="React Bits"
-            />
-          </picture>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="https://obelinf.com?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/obelinf-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/obelinf.svg"
-              alt="Obelinf"
-            />
-          </picture>
-        </a>
-      </td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td colspan="3"><strong>Spark Supporters</strong></td>
-    </tr>
-    <tr>
-      <td>
-        <a href="https://uirules.com?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/uirules-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/uirules.svg"
-              alt="UI Rules"
-            />
-          </picture>
-        </a>
-      </td>
-      <td>
-        <a href="https://shoogle.dev?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/shoogle-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/shoogle.svg"
-              alt="Shoogle"
-            />
-          </picture>
-        </a>
-      </td>
-      <td>
-        <a href="https://www.fonttrio.xyz?utm_source=chanhdai.com">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/fonttrio-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/fonttrio.svg"
-              alt="Fonttrio"
-            />
-          </picture>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="https://github.com/AnukarOP">
-          <picture>
-            <source
-              media="(prefers-color-scheme: dark)"
-              srcset="https://assets.chanhdai.com/images/sponsors/anukar-dark.svg"
-            />
-            <img
-              src="https://assets.chanhdai.com/images/sponsors/anukar.svg"
-              alt="Anukar"
-            />
-          </picture>
-        </a>
-      </td>
-      <td align="center"><a href="https://github.com/raksalim">Raksa Lim</a></td>
-      <td align="center"><a href="https://lndev.me?utm_source=chanhdai.com">Leonel Ngoya</a></td>
-    </tr>
-    <tr>
-      <td align="center"><a href="https://github.com/fadymondy">Fady Mondy</a></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-
-> Found this project useful? [Sponsor me](https://github.com/sponsors/ncdai) to help with support and maintenance.
-
-## Stats
-
-![Stats](https://repobeats.axiom.co/api/embed/583bf08fbdef57c3921d3cfda902d546df3e6ed1.svg "Repobeats analytics image")
+界面基础控件来自 [shadcn/ui](https://ui.shadcn.com/docs)，部分组件取自 [Cult UI](https://cult-ui.com/) 和 [Kibo UI](https://www.kibo-ui.com/)；图标用 [Lucide](https://lucide.dev/)；动效用 [Motion](https://motion.dev/)。

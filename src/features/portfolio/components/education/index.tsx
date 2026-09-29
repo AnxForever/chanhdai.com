@@ -12,6 +12,11 @@ import { EducationItem } from "./education-item"
 const ID = "education"
 
 export function Education() {
+  // Nothing to show until EDUCATION is filled in.
+  if (EDUCATION.length === 0) {
+    return null
+  }
+
   return (
     <Panel id={ID}>
       <PanelHeader>

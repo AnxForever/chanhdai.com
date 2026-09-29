@@ -21,6 +21,11 @@ const ID = "experience"
 const MAX = 3
 
 export function Experiences() {
+  // Nothing to show until EXPERIENCES is filled in.
+  if (EXPERIENCES.length === 0) {
+    return null
+  }
+
   return (
     <Panel id={ID}>
       <PanelHeader>

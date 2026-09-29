@@ -96,19 +96,27 @@ export default function Page() {
 
         <div className="h-4" />
 
-        <div className="screen-line-top screen-line-bottom p-2">
-          <Suspense
-            fallback={
-              <div className="flex h-9 w-full rounded-lg border border-input dark:bg-input/30" />
-            }
-          >
-            <PostSearchInput />
-          </Suspense>
-        </div>
+        {allPosts.length === 0 ? (
+          <div className="screen-line-top screen-line-bottom px-4 py-12 text-center text-sm text-muted-foreground">
+            No posts yet.
+          </div>
+        ) : (
+          <>
+            <div className="screen-line-top screen-line-bottom p-2">
+              <Suspense
+                fallback={
+                  <div className="flex h-9 w-full rounded-lg border border-input dark:bg-input/30" />
+                }
+              >
+                <PostSearchInput />
+              </Suspense>
+            </div>
 
-        <Suspense fallback={<PostList posts={allPosts} />}>
-          <PostListWithSearch posts={allPosts} />
-        </Suspense>
+            <Suspense fallback={<PostList posts={allPosts} />}>
+              <PostListWithSearch posts={allPosts} />
+            </Suspense>
+          </>
+        )}
 
         <div className="h-4" />
       </div>

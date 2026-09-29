@@ -58,16 +58,22 @@ export function BookmarkItem({
             <dd>{bookmark.category}</dd>
           </div>
 
-          <MetaSeparator />
+          {bookmark.bookmarkedAt && (
+            <>
+              <MetaSeparator />
 
-          <div>
-            <dt className="sr-only">Bookmarked on</dt>
-            <dd>
-              <time dateTime={new Date(bookmark.bookmarkedAt).toISOString()}>
-                {format(new Date(bookmark.bookmarkedAt), "d MMM yyyy")}
-              </time>
-            </dd>
-          </div>
+              <div>
+                <dt className="sr-only">Bookmarked on</dt>
+                <dd>
+                  <time
+                    dateTime={new Date(bookmark.bookmarkedAt).toISOString()}
+                  >
+                    {format(new Date(bookmark.bookmarkedAt), "d MMM yyyy")}
+                  </time>
+                </dd>
+              </div>
+            </>
+          )}
         </dl>
 
         {bookmark.why && (

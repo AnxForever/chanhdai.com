@@ -13,6 +13,11 @@ import { RecognitionItem } from "./recognition-item"
 const ID = "recognition"
 
 export function Recognition() {
+  // Nothing to show until RECOGNITION is filled in.
+  if (RECOGNITION.length === 0) {
+    return null
+  }
+
   return (
     <Panel id={ID}>
       <PanelHeader>

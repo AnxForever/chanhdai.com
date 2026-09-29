@@ -5,15 +5,20 @@ export type Project = {
   /**
    * Project period for display and sorting.
    * Use "MM.YYYY" format. Omit `end` for ongoing projects.
+   * Omit the whole field when the dates are unknown — the card then shows no
+   * period rather than an invented one.
    */
-  period: {
+  period?: {
     /** Start date (e.g., "05.2025"). */
     start: string
     /** End date; leave undefined for "Present". */
     end?: string
   }
-  /** Public URL (site, repository, demo, or video). */
-  link: string
+  /**
+   * Public URL (site, repository, demo, or video). Omit when there is no
+   * public link — the card then shows no external-link button.
+   */
+  link?: string
   /** Tags/technologies for chips or filtering. */
   skills: string[]
   /** Optional rich description; Markdown and line breaks supported. */

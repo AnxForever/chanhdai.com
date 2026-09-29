@@ -21,6 +21,11 @@ export function Timeline({
   className,
   ...props
 }: React.ComponentProps<typeof TimescaleRoot>) {
+  // Nothing to show until TIMELINE_MILESTONES is filled in.
+  if (TIMELINE_MILESTONES.length === 0) {
+    return null
+  }
+
   return (
     <TimescaleRoot className={cn("w-full", className)} {...props}>
       <TimescaleHeader>

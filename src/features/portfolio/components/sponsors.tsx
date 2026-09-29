@@ -26,6 +26,11 @@ const FEATURED_SPONSORS = SPONSORS.filter((sponsor) =>
 const ID = "sponsors"
 
 export function Sponsors() {
+  // Nothing to show until SPONSORS is filled in.
+  if (SPONSORS.length === 0) {
+    return null
+  }
+
   return (
     <Panel id={ID} className="screen-line-bottom-none">
       <PanelHeader>

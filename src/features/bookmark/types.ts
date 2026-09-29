@@ -47,7 +47,8 @@ export type Bookmark = {
   author?: string
   icon?: React.ReactElement
   category: BookmarkCategory
-  bookmarkedAt: string
+  /** Omitted when the date is unknown; the card then shows no date. */
+  bookmarkedAt?: string
   /** 1-2 first-person sentences shown on cards. */
   why?: string
 }

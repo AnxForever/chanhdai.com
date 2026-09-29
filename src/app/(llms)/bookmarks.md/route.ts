@@ -28,7 +28,7 @@ ${categorySections
 ${items
   .map(
     (item) =>
-      `- [${item.title}](${item.url})${item.author ? ` by ${item.author}` : ""} (${format(new Date(item.bookmarkedAt), "yyyy-MM-dd")})${item.why ? `\n  ${item.why}` : ""}`
+      `- [${item.title}](${item.url})${item.author ? ` by ${item.author}` : ""}${item.bookmarkedAt ? ` (${format(new Date(item.bookmarkedAt), "yyyy-MM-dd")})` : ""}${item.why ? `\n  ${item.why}` : ""}`
   )
   .join("\n")}`
   )

@@ -1,4 +1,5 @@
-import { MapPinIcon } from "lucide-react"
+import { urlToName } from "@/utils/url"
+import { LinkIcon, MapPinIcon } from "lucide-react"
 
 import { USER } from "@/features/portfolio/data/user"
 
@@ -32,27 +33,25 @@ export function Overview() {
           )
         })}
 
-        <IntroItem>
-          <IntroItemIcon>
-            <MapPinIcon />
-          </IntroItemIcon>
-          <IntroItemContent>
-            <IntroItemLink
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(USER.address)}`}
-              aria-label={`Location: ${USER.address}`}
-            >
-              {USER.address}
-            </IntroItemLink>
-          </IntroItemContent>
-        </IntroItem>
+        {USER.address && (
+          <IntroItem>
+            <IntroItemIcon>
+              <MapPinIcon />
+            </IntroItemIcon>
+            <IntroItemContent>
+              <IntroItemLink
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(USER.address)}`}
+                aria-label={`Location: ${USER.address}`}
+              >
+                {USER.address}
+              </IntroItemLink>
+            </IntroItemContent>
+          </IntroItem>
+        )}
 
         <CurrentLocalTimeItem timeZone={USER.timeZone} />
 
-        <EmailItem emailB64={USER.emailB64} />
-
-        <PhoneItem phoneNumberB64={USER.phoneNumberB64} />
-
-        {/* <IntroItem>
+        <IntroItem>
           <IntroItemIcon>
             <LinkIcon />
           </IntroItemIcon>
@@ -64,7 +63,13 @@ export function Overview() {
               {urlToName(USER.website)}
             </IntroItemLink>
           </IntroItemContent>
-        </IntroItem> */}
+        </IntroItem>
+
+        {USER.emailB64 && <EmailItem emailB64={USER.emailB64} />}
+
+        {USER.phoneNumberB64 && (
+          <PhoneItem phoneNumberB64={USER.phoneNumberB64} />
+        )}
 
         {/* <IntroItem>
           <IntroItemIcon>{getGenderIcon(USER.gender)}</IntroItemIcon>
