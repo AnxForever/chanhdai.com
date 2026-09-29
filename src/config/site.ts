@@ -9,9 +9,10 @@ import { USER } from "@/features/portfolio/data/user"
  * deployment target is settled; `.env.local` overrides the dev origin through
  * `NEXT_PUBLIC_APP_URL`, and production should set that variable too.
  *
- * TODO: replace with the Vercel production domain before publishing.
+ * Change this when a custom domain is attached — the Vercel project URL is
+ * only the default.
  */
-export const SITE_DOMAIN = "anxforever.github.io"
+export const SITE_DOMAIN = "anx-portfolio.vercel.app"
 
 export const SITE_INFO = {
   name: USER.displayName,
