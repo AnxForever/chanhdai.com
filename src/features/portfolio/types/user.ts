@@ -20,8 +20,8 @@ export type User = {
   phoneNumberB64?: string
   /** base64 encoded (https://t.io.vn/base64-string-converter) */
   emailB64?: string
-  /** Personal/homepage URL */
-  website: string
+  /** Personal/homepage URL. Omit when the site is the homepage itself. */
+  website?: string
   /** Primary/current role shown on profile */
   jobTitle?: string
   /** Work history entries */

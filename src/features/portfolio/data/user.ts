@@ -18,10 +18,9 @@ export const USER: User = {
   emailB64: "YW54Zm9yZXZlckBxcS5jb20=",
   // phoneNumberB64 / jobTitle 暂未公开 —— 留空即可，
   // 对应的 overview 条目会自动跳过，不会渲染空行。
-  website: "https://anxforever.cn/",
   jobs: [],
   about: `- 我是 Anx，在西安科技大学读书。做前端设计，也做 AI 编程。
-- 在维护 [StyleKit](https://github.com/AnxForever/stylekit)（[线上](https://www.stylekit.top)）—— 面向 AI 生成网页的开源视觉风格库，148 套精选风格。也写 [Anx Journal](https://anxforever.cn/)，一个自己搭的博客平台。
+- 在维护 [StyleKit](https://github.com/AnxForever/stylekit)（[线上](https://www.stylekit.top)）—— 面向 AI 生成网页的开源视觉风格库，148 套精选风格。想写的东西都放在这个站里。
 - 平时写 AI 工具（Codex、Claude Code、MCP）、前端设计基础和求职准备这几类东西，喜欢折腾论文阅读器、终端、设计系统。
 `,
   avatar: "/images/anx-avatar.jpg",

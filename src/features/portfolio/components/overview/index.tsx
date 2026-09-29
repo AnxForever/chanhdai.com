@@ -51,19 +51,21 @@ export function Overview() {
 
         <CurrentLocalTimeItem timeZone={USER.timeZone} />
 
-        <IntroItem>
-          <IntroItemIcon>
-            <LinkIcon />
-          </IntroItemIcon>
-          <IntroItemContent>
-            <IntroItemLink
-              href={USER.website}
-              aria-label={`Personal website: ${urlToName(USER.website)}`}
-            >
-              {urlToName(USER.website)}
-            </IntroItemLink>
-          </IntroItemContent>
-        </IntroItem>
+        {USER.website && (
+          <IntroItem>
+            <IntroItemIcon>
+              <LinkIcon />
+            </IntroItemIcon>
+            <IntroItemContent>
+              <IntroItemLink
+                href={USER.website}
+                aria-label={`Personal website: ${urlToName(USER.website)}`}
+              >
+                {urlToName(USER.website)}
+              </IntroItemLink>
+            </IntroItemContent>
+          </IntroItem>
+        )}
 
         {USER.emailB64 && <EmailItem emailB64={USER.emailB64} />}
 

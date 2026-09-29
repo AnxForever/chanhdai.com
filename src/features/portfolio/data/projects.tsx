@@ -15,7 +15,6 @@ export const PROJECTS: Project[] = [
   {
     id: "anx-journal",
     title: "Anx Journal",
-    link: "https://anxforever.cn/",
     skills: ["Next.js", "React", "Tailwind CSS", "GitHub App", "Cloudflare"],
     description: `个人博客平台，文章存在 GitHub 仓库里，通过 GitHub App 在线写作与发布。
 

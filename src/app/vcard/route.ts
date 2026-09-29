@@ -16,7 +16,11 @@ export async function GET() {
 
   // Contact fields are optional: an unpublished one is left out of the card
   // rather than emitted empty.
-  card.addName(USER.lastName, USER.firstName).addURL(USER.website)
+  card.addName(USER.lastName, USER.firstName)
+
+  if (USER.website) {
+    card.addURL(USER.website)
+  }
 
   if (USER.phoneNumberB64) {
     card.addPhoneNumber(decodePhoneNumber(USER.phoneNumberB64))
