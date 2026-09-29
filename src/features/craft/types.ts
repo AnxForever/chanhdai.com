@@ -1,6 +1,8 @@
-// Media is re-hosted on R2 with `pnpm craft:upload`. Third-party CDNs such as
-// video.twimg.com refuse to serve other sites.
-type AssetUrl = `https://assets.chanhdai.com/${string}`
+/**
+ * Media has to be self-hosted: third-party CDNs such as video.twimg.com refuse
+ * to serve other sites. Either an absolute URL or a path under `public/`.
+ */
+type AssetUrl = `https://${string}` | `/${string}`
 
 export type CraftImage = {
   src: AssetUrl

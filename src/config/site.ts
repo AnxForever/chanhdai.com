@@ -24,7 +24,7 @@ export const SITE_INFO = {
 
 export const LICENSE = {
   name: "MIT License",
-  url: "https://github.com/AnxForever/chanhdai.com/blob/main/LICENSE",
+  url: "https://github.com/AnxForever/anx-portfolio/blob/main/LICENSE",
 }
 
 export const META_THEME_COLORS = {
@@ -63,9 +63,9 @@ export const MOBILE_NAV: NavItem<Route>[] = [
 export const X_HANDLE: string | undefined = undefined
 
 export const GITHUB_USERNAME = SOCIAL.github.handle
-export const SOURCE_CODE_GITHUB_REPO = "AnxForever/chanhdai.com"
+export const SOURCE_CODE_GITHUB_REPO = "AnxForever/anx-portfolio"
 export const SOURCE_CODE_GITHUB_URL =
-  "https://github.com/AnxForever/chanhdai.com"
+  "https://github.com/AnxForever/anx-portfolio"
 
 export const SPONSORSHIP_URL = "https://github.com/sponsors/AnxForever"
 

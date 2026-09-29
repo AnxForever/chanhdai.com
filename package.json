@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnxForever/chanhdai.com.git"
+    "url": "git+https://github.com/AnxForever/anx-portfolio.git"
   },
   "scripts": {
     "dev": "next dev",

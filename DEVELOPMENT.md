@@ -11,8 +11,8 @@
 ## 起步
 
 ```bash
-git clone https://github.com/AnxForever/chanhdai.com.git
-cd chanhdai.com
+git clone https://github.com/AnxForever/anx-portfolio.git
+cd anx-portfolio
 pnpm install
 cp .env.example .env.local
 pnpm dev
