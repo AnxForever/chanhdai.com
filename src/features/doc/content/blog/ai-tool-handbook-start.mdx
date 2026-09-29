@@ -1,0 +1,139 @@
+---
+title: AI 编程工具手册（第 0 章）：小白先看懂这套路线
+description: 先用最简单的方式分清 Codex、Claude Code、CC Switch、账号、API Key 和模型，再选择适合自己的账号或国内接入路线。
+createdAt: 2026-08-10T16:00
+updatedAt: 2026-08-10T16:00
+tags: [AI 编程, Codex, Claude Code, CC Switch, 新手教程]
+---
+
+如果你第一次接触 Codex、Claude Code 或 CC Switch，不要先背命令，也不要先研究一大堆配置。
+
+你现在只需要先弄懂三件事：谁负责干活、谁负责切换、模型从哪里来。弄懂后，再按自己的情况选择一条路线，最后完成一个很小的任务。
+
+## 这一章看完，你应该知道
+
+- Codex 和 Claude Code 是什么；
+- CC Switch 为什么会出现在教程里；
+- 账号、API Key、模型和渠道分别负责什么；
+- 你应该走“账号登录”还是“API / 中转 / 国内模型”路线；
+- 整套手册应该按什么顺序阅读。
+
+## 先记住一个最简单的比喻
+
+把 AI 编程工具想成一个可以帮你干活的助手：
+
+| 东西                | 白话解释                               | 你什么时候会碰到它                   |
+| ------------------- | -------------------------------------- | ------------------------------------ |
+| Codex / Claude Code | 真正接收任务、读取文件和修改项目的工具 | 你要开始干活时                       |
+| 账号                | 证明你是谁的登录身份                   | 你需要登录客户端时                   |
+| API Key             | 允许程序调用模型的一把钥匙             | 你走 API、代理或国内模型路线时       |
+| 模型                | 真正负责回答和执行任务的 AI            | 你选择 DeepSeek、Claude 或其他模型时 |
+| 渠道                | 模型的地址、Key 和接口配置             | 你添加或切换供应商时                 |
+| CC Switch           | 帮你保存和切换多套渠道配置的工具       | 你不想手动改配置文件时               |
+
+> [!TIP]
+> 最容易记的一句话：Codex / Claude Code 负责干活，模型负责回答，CC Switch 负责切换，账号或 API Key 负责让请求通过。
+
+## 你有两条主要路线
+
+不需要两条路线都学。先选一条能跑通的。
+
+### 路线 A：账号登录路线
+
+这条路线适合已经准备好 ChatGPT 账号，或者准备通过成品号、会员和验证渠道登录 Codex 的读者。
+
+阅读顺序：
+
+1. [下载 Codex 客户端](/blog/ai-tool-handbook-codex)；
+2. [注册账号与完成手机号验证](/blog/ai-tool-handbook-codex-account)；
+3. [完成第一个任务](/blog/ai-tool-handbook-codex-first-task)。
+
+你之前已经验证过的渠道仍然在第二章中：
+
+- 成品号购买：[OpenPrice 成品号](https://www.openprice.cc/card-products/chatgpt-plus-finished-product)；
+- 过验证：[美国实卡验证](https://pay.ldxp.cn/shop/CG7LQ4AR)。
+
+### 路线 B：API、中转或国内模型路线
+
+这条路线适合没有订阅账号，或者想直接使用 API、中转站、DeepSeek 等国内模型的读者。
+
+阅读顺序：
+
+1. [下载并启动 Codex](/blog/ai-tool-handbook-codex)；
+2. 先看[完成第一个任务](/blog/ai-tool-handbook-codex-first-task)，知道工具正常工作是什么样；
+3. 阅读[账号、API Key、模型与渠道](/blog/ai-tool-handbook-concepts)；
+4. 使用 [CC Switch 配置 API Key](/blog/ai-tool-handbook-codex-network)；
+5. 按具体例子[接入 DeepSeek](/blog/ai-tool-handbook-codex-deepseek)。
+
+这条路线中，CC Switch 不会替你提供模型。它只是把你已有的 API Key、地址和模型配置整理好，并帮你在不同渠道之间切换。
+
+## 第一次不要做大项目
+
+第一次使用时，只做一个可以随时删除的小任务：
+
+1. 新建一个练习文件夹；
+2. 放入一个 `README.md` 或简单网页文件；
+3. 让 AI 先读取，不要修改；
+4. 让 AI 只改一个标题或一行文字；
+5. 查看修改前后的差异；
+6. 确认结果后，再进入真实项目。
+
+如果你能完成这六步，就已经完成了最重要的第一次闭环。后面学习 `AGENTS.md`、提示词、MCP 和 Skills，都是在这个闭环上继续增加能力。
+
+## 这套手册的阅读顺序
+
+### 第一阶段：先让工具跑起来
+
+- 下载 Codex；
+- 完成账号登录，或者选 API / 中转路线；
+- 完成第一个小任务。
+
+### 第二阶段：学会切换渠道
+
+- 看懂账号、API Key、模型和渠道；
+- 用 CC Switch 添加第一个渠道；
+- 用一个国内模型或中转渠道完成测试；
+- 了解 Codex 和 Claude Code 切换后什么时候需要重新打开。
+
+### 第三阶段：让 AI 进入真实项目
+
+- 学会确认项目根目录；
+- 写一份最小的 `AGENTS.md`；
+- 给任务写清范围、限制和验收标准；
+- 查看 diff，并用命令或页面行为验证结果。
+
+### 第四阶段：再学习高级功能
+
+- Claude Code；
+- MCP；
+- Skills；
+- 多模型协作和长期工作流。
+
+不要一开始就跳到 MCP 或 Skills。先让一个客户端完成一个小任务，后面每个功能都会更容易理解。
+
+## 遇到问题先不要乱改
+
+先判断问题发生在哪一步：
+
+| 现象                    | 先看哪篇                                                                                                       |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------- |
+| 找不到 Codex 或不会安装 | [下载与安装](/blog/ai-tool-handbook-codex)                                                                     |
+| 登录时要求验证          | [账号与验证](/blog/ai-tool-handbook-codex-account)                                                             |
+| 不知道 API Key 是什么   | [账号、Key、模型与渠道](/blog/ai-tool-handbook-concepts)                                                       |
+| CC Switch 切换后没生效  | [CC Switch 配置](/blog/ai-tool-handbook-codex-network)                                                         |
+| DeepSeek 或其他模型报错 | [DeepSeek 接入](/blog/ai-tool-handbook-codex-deepseek)                                                         |
+| AI 改错文件或结果不对   | [第一个任务](/blog/ai-tool-handbook-codex-first-task) 和[常见错误排查](/blog/ai-tool-handbook-troubleshooting) |
+
+> [!WARNING]
+> 不要同时更换账号、网络、模型、Key 和客户端。一次只处理一个环节，才知道是哪一步解决了问题。
+
+## 需要交流时
+
+如果你按照文章操作仍然卡住，可以到抖音群聊交流：**248636512581**。
+
+提问时最好带上：你使用的工具、当前页面、完整错误文字和你已经做过的步骤。
+
+> [!CAUTION]
+> API Key、密码、验证码和私人信息不要发到群里。
+
+下一步从[第一章：下载与安装 Codex](/blog/ai-tool-handbook-codex)开始。
