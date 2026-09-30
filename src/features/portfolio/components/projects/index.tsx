@@ -1,4 +1,5 @@
 import { CollapsibleList } from "@/components/collapsible-list"
+import { GlowCardGrid } from "@/registry/components/glow-card-grid"
 import {
   Panel,
   PanelHeader,
@@ -28,11 +29,15 @@ export function Projects() {
         </PanelTitle>
       </PanelHeader>
 
-      <CollapsibleList
-        items={PROJECTS}
-        max={4}
-        renderItem={(item) => <ProjectItem project={item} />}
-      />
+      {/* Pointer tracking only; neutralized to a single column so the
+          project list keeps its vertical layout. */}
+      <GlowCardGrid className="grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
+        <CollapsibleList
+          items={PROJECTS}
+          max={4}
+          renderItem={(item) => <ProjectItem project={item} />}
+        />
+      </GlowCardGrid>
     </Panel>
   )
 }

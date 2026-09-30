@@ -28,12 +28,28 @@ export function ThemeToggle() {
     const next = resolvedTheme === "dark" ? "light" : "dark"
 
     click()
-    setTheme(next === systemTheme ? "system" : next)
     setMetaColor(
       resolvedTheme === "dark"
         ? META_THEME_COLORS.light
         : META_THEME_COLORS.dark
     )
+
+    // Circle-blur burst (theme-toggle-effect-circle-blur): the CSS in
+    // globals.css animates the ::view-transition pseudo-elements, this call
+    // just snapshots the swap. Falls back to an instant switch where the View
+    // Transitions API is unavailable or motion is reduced.
+    const applyTheme = () => {
+      setTheme(next === systemTheme ? "system" : next)
+    }
+
+    if (
+      "startViewTransition" in document &&
+      window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+    ) {
+      document.startViewTransition(applyTheme)
+    } else {
+      applyTheme()
+    }
   }
 
   useHotkeys("d", () => switchTheme())

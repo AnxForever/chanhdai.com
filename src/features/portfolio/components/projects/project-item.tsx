@@ -36,7 +36,21 @@ export function ProjectItem({
     <Collapsible className={className} defaultOpen={project.isExpanded}>
       {/* Only the title is the trigger (accordion pattern); its overlay keeps
           the whole row clickable, while the project link sits above it. */}
-      <div className="relative flex items-center hover:bg-accent-muted">
+      <div
+        className="group relative flex items-center overflow-hidden hover:bg-accent-muted"
+        data-slot="glow-card"
+      >
+        {/* Spotlight follows the cursor; --pointer-x/y are written by the
+            GlowCardGrid wrapper in the Projects panel. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background:
+              "radial-gradient(260px circle at calc(var(--pointer-x, -10) * 50% + 50%) calc(var(--pointer-y, -10) * 50% + 50%), color-mix(in oklab, var(--foreground) 7%, transparent), transparent 70%)",
+          }}
+        />
+
         <IconTile className="mx-4">{project.icon ?? <BoxIcon />}</IconTile>
 
         <div className="flex flex-1 items-center gap-2 border-l border-dashed border-line p-4">
