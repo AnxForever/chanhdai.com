@@ -1,5 +1,6 @@
+import { formatCompactNumber, formatNumber } from "@/utils/format"
 import { addQueryParams } from "@/utils/url"
-import { BoxIcon, InfinityIcon, LinkIcon } from "lucide-react"
+import { BoxIcon, InfinityIcon, LinkIcon, StarIcon } from "lucide-react"
 
 import { UTM_PARAMS } from "@/config/site"
 import {
@@ -25,13 +26,18 @@ import { ProjectTitle } from "./project-title"
 export function ProjectItem({
   className,
   project,
+  stargazersCount,
 }: {
   className?: string
   project: Project
+  /** Star count for `project.repo`; null hides the badge. */
+  stargazersCount?: number | null
 }) {
-  const { period } = project
+  const { period, repo } = project
   const isOngoing = !period?.end
   const isSinglePeriod = period?.end === period?.start
+  const showStars =
+    repo && typeof stargazersCount === "number" && stargazersCount > 0
 
   return (
     <Collapsible className={className} defaultOpen={project.isExpanded}>
@@ -88,6 +94,33 @@ export function ProjectItem({
               </dl>
             )}
           </div>
+
+          {showStars && (
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <a
+                    className="relative flex shrink-0 items-center gap-1 text-sm text-muted-foreground after:absolute after:-inset-1.5 hover:text-foreground"
+                    href={addQueryParams(
+                      `https://github.com/${repo}`,
+                      UTM_PARAMS
+                    )}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <StarIcon className="size-3.5" />
+                    <span className="tabular-nums">
+                      {formatCompactNumber(stargazersCount)}
+                    </span>
+                    <span className="sr-only">GitHub stars</span>
+                  </a>
+                }
+              />
+              <TooltipContent className="tabular-nums">
+                {formatNumber(stargazersCount)} stars on GitHub
+              </TooltipContent>
+            </Tooltip>
+          )}
 
           {project.link && (
             <Tooltip>

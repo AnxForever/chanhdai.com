@@ -19,6 +19,11 @@ export type Project = {
    * public link — the card then shows no external-link button.
    */
   link?: string
+  /**
+   * GitHub repository in `owner/name` form. Its stargazer count is fetched at
+   * render time and shown on the row; omit for projects without a public repo.
+   */
+  repo?: string
   /** Tags/technologies for chips or filtering. */
   skills: string[]
   /** Optional rich description; Markdown and line breaks supported. */

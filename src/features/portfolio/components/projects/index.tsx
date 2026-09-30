@@ -8,16 +8,22 @@ import {
 } from "@/features/portfolio/components/panel"
 import { PanelTitleCopy } from "@/features/portfolio/components/panel-title-copy"
 import { PROJECTS } from "@/features/portfolio/data/projects"
+import { getProjectStargazers } from "@/features/portfolio/lib/github-project-stars"
 
 import { ProjectItem } from "./project-item"
 
 const ID = "projects"
 
-export function Projects() {
+export async function Projects() {
   // Nothing to show until PROJECTS is filled in.
   if (PROJECTS.length === 0) {
     return null
   }
+
+  const repos = PROJECTS.flatMap((project) =>
+    project.repo ? [project.repo] : []
+  )
+  const stargazers = repos.length > 0 ? await getProjectStargazers(repos) : {}
 
   return (
     <Panel id={ID}>
@@ -35,7 +41,14 @@ export function Projects() {
         <CollapsibleList
           items={PROJECTS}
           max={4}
-          renderItem={(item) => <ProjectItem project={item} />}
+          renderItem={(item) => (
+            <ProjectItem
+              project={item}
+              stargazersCount={
+                item.repo ? (stargazers[item.repo] ?? null) : null
+              }
+            />
+          )}
         />
       </GlowCardGrid>
     </Panel>
