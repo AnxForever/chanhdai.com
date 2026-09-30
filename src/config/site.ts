@@ -12,7 +12,7 @@ import { USER } from "@/features/portfolio/data/user"
  * Change this when a custom domain is attached — the Vercel project URL is
  * only the default.
  */
-export const SITE_DOMAIN = "anx-portfolio.vercel.app"
+export const SITE_DOMAIN = "me.anxforever.cn"
 
 export const SITE_INFO = {
   name: USER.displayName,
