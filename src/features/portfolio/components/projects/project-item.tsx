@@ -20,6 +20,7 @@ import {
 import { Markdown } from "@/components/markdown"
 
 import type { Project } from "../../types/projects"
+import { ProjectTitle } from "./project-title"
 
 export function ProjectItem({
   className,
@@ -58,7 +59,10 @@ export function ProjectItem({
             <h3 className="mb-1 leading-snug font-medium text-balance">
               <CollapsibleTrigger className="text-left">
                 <span className="absolute inset-0" aria-hidden />
-                {project.title}
+                <ProjectTitle
+                  title={project.title}
+                  effect={project.titleEffect}
+                />
               </CollapsibleTrigger>
             </h3>
 

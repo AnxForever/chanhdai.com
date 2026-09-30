@@ -27,4 +27,9 @@ export type Project = {
   icon?: React.ReactElement
   /** Whether the project card is expanded by default in the UI. */
   isExpanded?: boolean
+  /**
+   * `\"shimmer\"` plays a light sweep across the title while the row is
+   * hovered; without it the title is plain text.
+   */
+  titleEffect?: "shimmer"
 }

@@ -7,6 +7,7 @@ export const PROJECTS: Project[] = [
     link: "https://stylekit.top",
     skills: ["TypeScript", "Next.js", "React", "MCP", "Node.js"],
     isExpanded: true,
+    titleEffect: "shimmer",
     description: `面向 AI 编码工具的开源设计风格库：把设计风格抽象成它们能直接消费的结构化约束。
 
 - 148 种风格与 60 个动画整理为设计 tokens、组件配方与可机读约束；已发布 MCP / CLI / Core 三个 npm 包。
