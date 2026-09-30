@@ -8,6 +8,10 @@ const ScrollToTop = dynamic(() =>
   import("@/components/scroll-to-top").then((mod) => mod.ScrollToTop)
 )
 
+// Duck follower easter egg — unmounted for now (it competes with reading).
+// Re-add `import { DuckFollower } ...` + <DuckFollower /> to bring it back;
+// the component, sprite and CSS are still in the repo.
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     // References:

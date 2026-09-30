@@ -708,3 +708,23 @@
     }
   }
 }
+
+/* Duck follower easter egg (from the MIT-licensed chanhdai.com template,
+   re-enabled): the core positions the sprite with transform, this pins the
+   element to the viewport. */
+@layer base {
+  .duck-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+
+    pointer-events: none;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+
+    will-change: transform;
+    transition: none;
+  }
+}
